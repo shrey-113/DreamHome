@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Web Development Project (DBMS) about a property rental company called DreamHome.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Shreyansh Tiwari",
+  "license": "ISC"
+}

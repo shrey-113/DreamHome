@@ -1,0 +1,59 @@
+SELECT * from BranchOffice where City='Anytown'; #City='${CityName}'
+
+SELECT COUNT(BranchNumber) as Number_of_Branches, City from BranchOffice
+Group by City;
+
+Select CONCAT(FirstName, " ", LastName) as Name, Position, Salary
+from Staff
+where BranchNumber='B001' #BranchNumber='${BranchNumber}'
+Order by Name;
+
+Select Count(StaffID) as NumberOfStaff, SUM(Salary) as TotSalary
+from Staff;
+
+Select Count(s.StaffID) as Number_of_Staff, s.Position
+from Staff s
+INNER JOIN BranchOffice b ON s.BranchNumber =  b.BranchNumber
+where b.City='Glasgow'
+Group by Position;
+
+SELECT b.BranchNumber, b.BranchAddress, CONCAT(s.FirstName, ' ', s.LastName) AS manager_name
+FROM BranchOffice b
+JOIN Staff s ON b.ManagerID = s.StaffID
+ORDER BY b.BranchAddress;
+
+SELECT StaffID, CONCAT(FirstName, ' ', LastName) as Name
+FROM Staff
+WHERE SupervisorID = (SELECT StaffID FROM Staff WHERE Firstname = 'David' AND LastName = 'Lee')
+ORDER BY Name;
+
+SELECT PropertyID, PropertyAddress, type, rent
+from Property
+where City='Glasgow';
+
+SELECT p.*
+from Property p
+Where StaffID = (SELECT StaffID FROM Staff WHERE Firstname = 'David' AND LastName = 'Lee');
+
+Select s.StaffID, COUNT(p.PropertyID) AS Number_of_Properties
+from Staff s
+JOIN Property p ON p.StaffID = s.StaffID
+WHERE s.BranchNumber='B002'
+Group BY StaffID;
+
+Select CONCAT(o.FirstName, ' ', o.LastName) as Owner_Name, p.*
+From Property p
+JOIN Owner o ON p.OwnerID = o.OwnerID
+WHERE p.BranchNumber = 'B002';
+
+Select p.BranchNumber, COUNT(PropertyID) as Number_of_Properties, p.type
+From Property p
+Group BY type, BranchNumber
+ORDER BY BranchNumber;
+
+Select o.*, COUNT(p.PropertyID) as Number_of_Properties
+FROM Owner o
+JOIN Property p on p.OwnerID = o.OwnerID
+Group BY OwnerID
+HAVING COUNT(p.PropertyID)>1;
+
