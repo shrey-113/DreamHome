@@ -1,4 +1,4 @@
-import express, { NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { config } from "dotenv";
 import { IError } from "./types/basic/IError";
 
@@ -11,17 +11,11 @@ app.get("/test", (req, res) => {
 	res.status(200).json({ message: "Message recieved" });
 });
 
-app.use(
-	(
-		error: IError,
-		req: express.Request,
-		res: express.Response,
-		next: NextFunction,
-	) => {
-		res.status(error.code).json({ message: error.message });
-	},
-);
+app.use((error: IError, req: Request, res: Response, next: NextFunction) => {
+	res.status(error.code).json({ message: error.message });
+});
 
 app.listen(3000, () => {
+	
 	console.log("Server listening on port 3000");
 });
