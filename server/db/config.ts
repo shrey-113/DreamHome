@@ -1,6 +1,6 @@
 export const dbConfig = {
-    host: '10.0.7.14',
+    host: 'localhost',
     user: 'root',
-    password: 'shreyansh',
+    password: 'password',
     database: 'DreamHome'
   };
