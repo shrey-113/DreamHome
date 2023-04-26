@@ -1,8 +1,8 @@
 import { useState, useCallback, useRef, useEffect, useContext } from 'react'
 
-import { AuthContext } from '../context/auth-context'
+import { AuthContext } from '../store/authContext'
 
-export const useHttpClient = () => {
+export default () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState()
 

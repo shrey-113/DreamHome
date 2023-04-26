@@ -6,7 +6,7 @@ const About = () => {
       <div className='hero-overlay bg-opacity-100'></div>
       <div className='hero-content text-center text-black'>
         <div className='max-w-md'>
-          <h1 className='mb-5 text-5xl font-bold text-black'>About Us</h1>
+          <h1 className='mb-5 text-5xl font-bold text-black '>About Us</h1>
           <p className='mb-5'>
             At Dream Homes, we're committed to helping you find your perfect
             home. Our team of experienced professionals is dedicated to
