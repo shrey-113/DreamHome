@@ -15,7 +15,6 @@ Create Table Owner(
     Occupation Varchar(20),
     Tax_ID Varchar(10),
     Bank_Account_Number varchar(10),
-    PropertyID varchar(10),
     Property_Management_Prefrences varchar(50),
     Contract_Details Varchar(40),
     PRIMARY KEY(OwnerID)
@@ -26,17 +25,17 @@ Create Table Property (
     type varchar(20),
     rooms int(2),
     rent numeric(10,2),
-    OwnerID Varchar(10),
+    OwnerID int,
     PropertyAddress Varchar(100),
     City Varchar(30),
-    BranchNumber Varchar(10),
-    StaffID Varchar(10),
+    BranchNumber int,
+    StaffID int,
     PRIMARY KEY(PropertyID)
 );
 
 Create Table Lease (
     LeaseID int AUTO_INCREMENT,
-    PropertyID Varchar(10),
+    PropertyID int,
     LeaseStartDate Date,
     LeaseEndDate Date,
     LeaseStatus Boolean,
@@ -48,7 +47,7 @@ Create Table BranchOffice (
     BranchNumber int AUTO_INCREMENT,
     BranchAddress Varchar(100),
     City Varchar(30),
-    ManagerID Varchar(10),
+    ManagerID int,
     TelephoneNumber Varchar(15),
     ManagerStartDate Date,
     ManagerBonus Numeric(10,2),
@@ -59,6 +58,7 @@ Create Table Client (
     ClientID int AUTO_INCREMENT,
     ClientName Varchar(30),
     ClientAddress Varchar(100),
+    ClientEmail varchar(50),
     ClientPhone Varchar(10),
     PRIMARY KEY(ClientID)
 );
@@ -67,12 +67,13 @@ Create Table Staff(
     StaffID int AUTO_INCREMENT,
     Firstname varchar(20),
     LastName varchar(20),
+    Email varchar(50) UNIQUE,
     Sex Char,
     Date_of_Birth Date,
     Position Varchar(15),
     Salary Numeric(12,2),
-    BranchNumber Varchar(10),
-    SupervisorID Varchar(10),
+    BranchNumber int,
+    SupervisorID int,
     Password varchar(50) DEFAULT 'password',
     PRIMARY KEY(StaffID)
 );

@@ -1,3 +1,3 @@
 export interface Authenticated extends Request {
-	user?: { id: string; role: string; scopes: Array<string> };
+	user?: { email: string; role: string; scopes: Array<string> };
 }

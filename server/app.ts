@@ -22,6 +22,7 @@ app.use("/login", loginRouter);
 
 app.use("/create", createRouter);
 
+// app.use("/fetch",)
 app.use(isAuth);
 
 app.use((error: IError, req: Request, res: Response, next: NextFunction) => {

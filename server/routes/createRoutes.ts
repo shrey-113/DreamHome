@@ -1,22 +1,28 @@
 import express from "express";
-import { createStaff } from "../controllers/create";
+import {
+	createClient,
+	createOwner,
+	createStaff,
+} from "../controllers/createUser";
+import {
+	createBranch,
+	createLease,
+	createProperty,
+} from "../controllers/createProperty";
 
 const createRouter = express.Router();
 // Users
-createRouter.post("/staff",createStaff);
+createRouter.post("/staff", createStaff);
 
-createRouter.post("/client");
+createRouter.post("/client", createClient);
 
-createRouter.post("/owner");
+createRouter.post("/owner", createOwner);
 
 // Properties
-createRouter.post("/property");
+createRouter.post("/property", createProperty);
 
-createRouter.post("/branch");
+createRouter.post("/branch", createBranch);
 
-
-createRouter.post("/lease");
-
-
+createRouter.post("/lease", createLease);
 
 export default createRouter;
