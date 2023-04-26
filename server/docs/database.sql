@@ -49,7 +49,7 @@ Create Table BranchOffice (
     BranchNumber int AUTO_INCREMENT,
     BranchAddress Varchar(100),
     City Varchar(30),
-    ManagerID int,
+    ManagerID int UNIQUE,
     TelephoneNumber Varchar(15),
     ManagerStartDate Date,
     ManagerBonus Numeric(10,2),
@@ -58,7 +58,7 @@ Create Table BranchOffice (
 
 Create Table Client (
     ClientID int AUTO_INCREMENT,
-    ClientName Varchar(30),
+    ClientName Varchar(50),
     ClientAddress Varchar(100),
     ClientEmail varchar(50),
     ClientPhone Varchar(10),
@@ -108,63 +108,61 @@ ALTER TABLE Staff
 ADD CONSTRAINT branchnumberFK
 FOREIGN KEY (BranchNumber) REFERENCES BranchOffice(BranchNumber);
 
--- INSERT INTO Owner (OwnerID, FirstName, LastName, email, PhoneNumber, Address, Nationality, Date_of_Birth, Occupation, Tax_ID, Bank_Account_Number, PropertyID, Property_Management_Prefrences, Contract_Details) VALUES
--- ( 'John', 'Doe', 'johndoe@email.com', '1234567890', '123 Main St', 'USA', '1980-01-01', 'Accountant', 'TAX001', '12345678', 'P001', 'Rent', '1 year lease'),
--- ( 'Jane', 'Smith', 'janesmith@email.com', '0987654321', '456 Oak St', 'USA', '1975-03-15', 'Lawyer', 'TAX002', '87654321', 'P002', 'Management', '2 year lease'),
--- ( 'David', 'Lee', 'davidlee@email.com', '5555555555', '789 Elm St', 'Canada', '1990-05-20', 'Engineer', 'TAX003', '11111111', 'P003', 'Rent', '6 month lease'),
--- ( 'Emma', 'Johnson', 'emmajohnson@email.com', '2222222222', '987 Maple St', 'UK', '1982-12-31', 'Doctor', 'TAX004', '33333333', 'P004', 'Management', '1 year lease'),
--- ( 'Alex', 'Garcia', 'alexgarcia@email.com', '4444444444', '555 Pine St', 'Mexico', '1978-08-08', 'Business Owner', 'TAX005', '55555555', 'P005', 'Rent', '3 month lease'),
--- ( 'Sophie', 'Brown', 'sophiebrown@email.com', '7777777777', '321 Cedar St', 'Australia', '1995-02-14', 'Artist', 'TAX006', '77777777', 'P006', 'Management', '2 year lease'),
--- ( 'Michael', 'Nguyen', 'michaelnguyen@email.com', '9999999999', '654 Birch St', 'Vietnam', '1988-07-17', 'Programmer', 'TAX007', '99999999', 'P007', 'Rent', '1 year lease');
+INSERT INTO Owner ( FirstName, LastName, email, PhoneNumber, Address, Nationality, Date_of_Birth, Occupation, Tax_ID, Bank_Account_Number,  Property_Management_Prefrences, Contract_Details) VALUES
+( 'John', 'Doe', 'johndoe@email.com', '1234567890', '123 Main St', 'USA', '1980-01-01', 'Accountant', 'TAX001', '12345678', 'Rent', '1 year lease'),
+( 'Jane', 'Smith', 'janesmith@email.com', '0987654321', '456 Oak St', 'USA', '1975-03-15', 'Lawyer', 'TAX002', '87654321',  'Management', '2 year lease'),
+( 'David', 'Lee', 'davidlee@email.com', '5555555555', '789 Elm St', 'Canada', '1990-05-20', 'Engineer', 'TAX003', '11111111',  'Rent', '6 month lease'),
+( 'Emma', 'Johnson', 'emmajohnson@email.com', '2222222222', '987 Maple St', 'UK', '1982-12-31', 'Doctor', 'TAX004', '33333333',  'Management', '1 year lease'),
+( 'Alex', 'Garcia', 'alexgarcia@email.com', '4444444444', '555 Pine St', 'Mexico', '1978-08-08', 'Business Owner', 'TAX005', '55555555',  'Rent', '3 month lease'),
+( 'Sophie', 'Brown', 'sophiebrown@email.com', '7777777777', '321 Cedar St', 'Australia', '1995-02-14', 'Artist', 'TAX006', '77777777',  'Management', '2 year lease'),
+( 'Michael', 'Nguyen', 'michaelnguyen@email.com', '9999999999', '654 Birch St', 'Vietnam', '1988-07-17', 'Programmer', 'TAX007', '99999999',  'Rent', '1 year lease');
 
--- INSERT INTO BranchOffice (BranchNumber, BranchAddress, City, ManagerID, TelephoneNumber, ManagerStartDate, ManagerBonus) VALUES
--- ( '1 Main Street', 'Glasgow', 'S001', '0141 123 4567', '2022-01-01', 5000.00),
--- ( '5 High Street', 'Edinburgh', 'S002', '0131 123 4567', '2022-01-01', 4500.00),
--- ( '10 George Square', 'Glasgow', 'S003', '0141 234 5678', '2022-01-01', 5500.00),
--- ( '15 Princes Street', 'Edinburgh', 'S004', '0131 234 5678', '2022-01-01', 4000.00),
--- ( '20 Buchanan Street', 'Glasgow', 'S005', '0141 345 6789', '2022-01-01', 6000.00),
--- ( '25 Rose Street', 'Edinburgh', 'S006', '0131 345 6789', '2022-01-01', 3500.00),
--- ( '30 Sauchiehall Street', 'Glasgow', 'S007', '0141 456 7890', '2022-01-01', 6500.00);
+INSERT INTO BranchOffice ( BranchAddress, City, ManagerID, TelephoneNumber, ManagerStartDate, ManagerBonus) VALUES
+( '1 Main Street', 'Glasgow', 1, '0141 123 4567', '2022-01-01', 5000.00),
+( '5 High Street', 'Glasgow', 5, '0131 123 4567', '2022-01-01', 4500.00),
+( '10 George Square', 'Glasgow', 3, '0141 234 5678', '2022-01-01', 5500.00),
+( '15 Princes Street', 'Edinburgh', 4, '0131 234 5678', '2022-01-01', 4000.00),
+( '20 Buchanan Street', 'Glasgow',5 , '0141 345 6789', '2022-01-01', 6000.00),
+( '25 Rose Street', 'Edinburgh',6 , '0131 345 6789', '2022-01-01', 3500.00),
+( '30 Sauchiehall Street', 'Glasgow',7 , '0141 456 7890', '2022-01-01', 6500.00);
 
--- INSERT INTO Staff (StaffID, Firstname, LastName, Sex, Date_of_Birth, Position, Salary, BranchNumber, SupervisorID)
--- VALUES 
--- ( 'John', 'Doe', 'M', '1985-02-12', 'Manager', 75000.00, 'B001', NULL, 'password'),
--- ( 'Jane', 'Doe', 'F', '1990-05-23', 'Supervisor', 50000.00, 'B001', 'S001', 'password'),
--- ( 'Mark', 'Smith', 'M', '1993-11-10', 'Assistant', 35000.00, 'B001', 'S002', 'password'),
--- ('S004', 'Sarah', 'Johnson', 'F', '1987-09-05', 'Supervisor', 50000.00, 'B002', 'S001', 'password'),
--- ('S005', 'Michael', 'Brown', 'M', '1991-07-20', 'Assistant', 35000.00, 'B002', 'S004', 'password'),
--- ('S006', 'Emily', 'Davis', 'F', '1989-03-15', 'Assistant', 35000.00, 'B002', 'S004', 'password'),
--- ('S007', 'David', 'Garcia', 'M', '1995-01-08', 'Supervisor', 50000.00, 'B003', 'S001', 'password'),
--- ('S008', 'Sophia', 'Lee', 'F', '1994-06-18', 'Assistant', 35000.00, 'B003', 'S007', 'password'),
--- ('S009', 'Matthew', 'Wilson', 'M', '1988-12-30', 'Assistant', 35000.00, 'B003', 'S007', 'password');
+INSERT INTO Staff (Firstname, LastName, Email, Sex, Date_of_Birth, Position, Salary, BranchNumber, SupervisorID)
+VALUES 
+    ('John', 'Doe', 'johndoe@example.com', 'M', '1990-01-01', 'Manager', 50000, 1, NULL),
+    ('Jane', 'Doe', 'janedoe@example.com', 'F', '1995-01-01', 'Assistant', 40000, 1, NULL),
+    ('Mike', 'Smith', 'mikesmith@example.com', 'M', '1985-01-01', 'Supervisor', 60000, 2, NULL),
+    ('Sarah', 'Johnson', 'sarahjohnson@example.com', 'F', '1992-01-01', 'Assistant', 45000, 2, NULL),
+    ('David', 'Lee', 'davidlee@example.com', 'M', '1988-01-01', 'Manager', 55000, 2, NULL),
+    ('Emily', 'Wang', 'emilywang@example.com', 'F', '1998-01-01', 'Assistant', 38000, 2, NULL);
 
--- INSERT INTO Property (PropertyID, type, rooms, rent, OwnerID, PropertyAddress, City, BranchNumber, StaffID)
--- VALUES 
--- ('P001', 'Apartment', 2, 1500.00, 'O003', '123 Main St', 'Glasgow', 'B001', 'S005'),
--- ('P002', 'House', 3, 2000.00, 'O004', '456 Park Ave', 'Edinburgh', 'B002', 'S007'),
--- ('P003', 'Apartment', 1, 1000.00, 'O005', '789 5th St', 'Glasgow', 'B001', 'S006'),
--- ('P004', 'Apartment', 2, 1200.00, 'O006', '321 Elm St', 'Edinburgh', 'B002', 'S008'),
--- ('P005', 'House', 4, 2500.00, 'O007', '456 Maple Rd', 'Glasgow', 'B001', 'S005'),
--- ('P006', 'House', 5, 3000.00, 'O001', '789 Oak Ave', 'Edinburgh', 'B002', 'S007'),
--- ('P007', 'Apartment', 1, 800.00, 'O003', '123 Pine St', 'Glasgow', 'B001', 'S006');
+INSERT INTO Property ( type, rooms, rent, OwnerID, PropertyAddress, City, BranchNumber, StaffID)
+VALUES 
+( 'Apartment', 2, 1500.00, 1, '123 Main St', 'Glasgow', 2, 1),
+( 'House', 3, 2000.00, 2, '456 Park Ave', 'Edinburgh', 2, 2),
+( 'Apartment', 1, 1000.00, 3, '789 5th St', 'Glasgow', 1, 2),
+( 'Apartment', 2, 1200.00, 2, '321 Elm St', 'Edinburgh', 2, 1),
+( 'House', 4, 2500.00, 2, '456 Maple Rd', 'Glasgow', 1, 3),
+( 'House', 5, 3000.00,3 , '789 Oak Ave', 'Edinburgh', 2, 3),
+( 'Apartment', 1, 800.00, 2, '123 Pine St', 'Glasgow', 1, 4);
 
--- INSERT INTO Lease (LeaseID, PropertyID, LeaseStartDate, LeaseEndDate, LeaseStatus, LeaseRent)
--- VALUES 
--- ('L001', 'P001', '2022-01-01', '2023-01-01', 1, 1200.00),
--- ('L002', 'P002', '2022-02-01', '2023-02-01', 1, 800.00),
--- ('L003', 'P003', '2022-03-01', '2023-03-01', 0, 1500.00),
--- ('L004', 'P004', '2022-04-01', '2023-04-01', 1, 1000.00),
--- ('L005', 'P005', '2022-05-01', '2023-05-01', 1, 900.00),
--- ('L006', 'P006', '2022-06-01', '2023-06-01', 0, 1300.00),
--- ('L007', 'P007', '2022-07-01', '2023-07-01', 1, 1100.00);
+INSERT INTO Lease (PropertyID, LeaseStartDate, LeaseEndDate, LeaseStatus, LeaseRent)
+VALUES 
+(8, '2022-01-01', '2023-01-01', 1, 1200.00),
+(9, '2022-02-01', '2023-02-01', 1, 800.00),
+(10, '2022-03-01', '2023-03-01', 0, 1500.00),
+(11, '2022-04-01', '2023-04-01', 1, 1000.00),
+(12, '2022-05-01', '2023-05-01', 1, 900.00),
+(13, '2022-06-01', '2023-06-01', 0, 1300.00),
+(14, '2022-07-01', '2023-07-01', 1, 1100.00);
 
--- INSERT INTO Client (ClientID, ClientName, ClientAddress, ClientPhone)
--- VALUES 
--- ('C001', 'John Smith', '123 Main St, Glasgow', '555-1234'),
--- ('C002', 'Jane Doe', '456 High St, Edinburgh', '555-5678'),
--- ('C003', 'Bob Johnson', '789 Park Ave, London', '555-9012'),
--- ('C004', 'Mary Jones', '246 Elm St, Manchester', '555-3456'),
--- ('C005', 'Tom Wilson', '369 Maple St, Liverpool', '555-7890'),
--- ('C006', 'Samantha Lee', '579 Fifth Ave, New York', '555-2345'),
--- ('C007', 'David Brown', '135 King St, Sydney', '555-6789');
+INSERT INTO Client ( ClientName, ClientAddress, ClientPhone)
+VALUES 
+( 'John Smith', '123 Main St, Glasgow', '555-1234'),
+( 'Jane Doe', '456 High St, Edinburgh', '555-5678'),
+( 'Bob Johnson', '789 Park Ave, London', '555-9012'),
+( 'Mary Jones', '246 Elm St, Manchester', '555-3456'),
+( 'Tom Wilson', '369 Maple St, Liverpool', '555-7890'),
+( 'Samantha Lee', '579 Fifth Ave, New York', '555-2345'),
+( 'David Brown', '135 King St, Sydney', '555-6789');
+
 

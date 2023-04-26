@@ -57,3 +57,10 @@ JOIN Property p on p.OwnerID = o.OwnerID
 Group BY OwnerID
 HAVING COUNT(p.PropertyID)>1;
 
+
+
+
+
+
+
+Select * from Property WHERE City = '${city}', Rooms<${rooms}, type = '${type}', rent BETWEEN ${lowerlimit} AND ${upperlimit}, BranchNumber = ${branch};

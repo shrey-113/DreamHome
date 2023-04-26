@@ -64,7 +64,7 @@ export const fetchStaff: RequestHandler = async (req, res, next) => {
 
 export const fetchAll: RequestHandler = async (req, res, next) => {
 	try {
-		const text = req.body.text;
+		const text = req.query.text;
 		const [owners, properties, lease, branch, client, staff] =
 			await Promise.all([
 				DB.query(

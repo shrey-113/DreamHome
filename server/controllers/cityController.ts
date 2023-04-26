@@ -18,14 +18,16 @@ export const getBranches: RequestHandler = async (req, res, next) => {
 			`SELECT b.*, CONCAT(s.Firstname, ' ', s.LastName) as Manager from BranchOffice b, Staff s  where City = '${city}' and s.StaffID = b.ManagerID`,
 		);
 		// No of staff for each role in the city
-		const staff = await DB.query(
+		const staffNo = await DB.query(
 			`SELECT Position, COUNT(*) as NoOfStaff from Staff s, BranchOffice b where s.BranchNumber = b.BranchNumber and b.City = '${city}' GROUP BY Position`,
 		);
 		const branchesNumber = await DB.query(
-			`SELECT COUNT(*) from BranchOffice where City = '${city}'`,
+			`SELECT COUNT(*) as BranchesNumber from BranchOffice where City = '${city}'`,
 		);
-		res.status(200).json({ branches, branchesNumber, staff });
-	} catch (error) {}
+		res.status(200).json({ branches, branchesNumber, staffNo });
+	} catch (error) {
+		next(new IError("Branch fetch failed", 500, "getBranches"));
+	}
 };
 
 export const getBranchDetails: RequestHandler = async (req, res, next) => {
@@ -45,10 +47,10 @@ export const getBranchDetails: RequestHandler = async (req, res, next) => {
 			`Select * from Staff where BranchNumber = ${branch} and Position = 'Assistant'`,
 		);
 		const staffNumber = await DB.query(
-			`Select COUNT(*) from Staff where BranchNumber = ${branch} GROUP BY Position`,
+			`Select COUNT(*) as number, Position from Staff where BranchNumber = ${branch} GROUP BY Position`,
 		);
 		const totalSalary = await DB.query(
-			`Select SUM(Salary) from Staff where BranchNumber = ${branch}`,
+			`Select SUM(Salary) as TotalSalary from Staff where BranchNumber = ${branch}`,
 		);
 		res.status(200).json({
 			branchDetails,
@@ -58,28 +60,33 @@ export const getBranchDetails: RequestHandler = async (req, res, next) => {
 			staffNumber,
 			totalSalary,
 		});
-    } catch (error) {
-        next(new IError("Branch fetch failed", 500, "getBranches"));
-    }
+	} catch (error) {
+		next(new IError("Branch fetch failed", 500, "getBranches"));
+	}
 };
 
 export const getStaffDetails: RequestHandler = async (req, res, next) => {
-    try {
-        const staffid = req.params.staffid;
-        const staffDetails = await DB.query(
-            `Select * from Staff where StaffID = ${staffid}`,
-        );
+	try {
+		const staffid = req.params.staffid;
+		const staffDetails = await DB.query(
+			`Select * from Staff where StaffID = ${staffid}`,
+		);
 		const superior = await DB.query(
-			`SELECT CONCAT(FirstName, ' ', LastName) as SupervisorName from Staff where StaffID IN (Select SupervisorID from Staff where StaffID = ${staffid})`
+			`SELECT CONCAT(FirstName, ' ', LastName) as SupervisorName from Staff where StaffID IN (Select SupervisorID from Staff where StaffID = ${staffid})`,
 		);
 		const inferior = await DB.query(
-			`SELECT CONCAT(FirstName, ' ', LastName) as inferiorNames, Email, Sex, Position, Salary from Staff where SupervisorID = ${staffid}`
+			`SELECT CONCAT(FirstName, ' ', LastName) as inferiorNames, Email, Sex, Position, Salary from Staff where SupervisorID = ${staffid}`,
 		);
 		const propertiesManaged = await DB.query(
-			`SELECT PropertyID, type, OwnerID, rent, PropertyAddress, City from Property where StaffID = ${staffid}`
-		)
-        res.status(200).json({ staffDetails, superior, inferior, propertiesManaged });
-    } catch (error) {
-        next(new IError("Staff fetch failed", 500, "getStaff"));
-    }
+			`SELECT PropertyID, type, OwnerID, rent, PropertyAddress, City from Property where StaffID = ${staffid}`,
+		);
+		res.status(200).json({
+			staffDetails,
+			superior,
+			inferior,
+			propertiesManaged,
+		});
+	} catch (error) {
+		next(new IError("Staff fetch failed", 500, "getStaff"));
+	}
 };
