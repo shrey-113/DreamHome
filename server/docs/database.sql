@@ -30,6 +30,7 @@ Create Table Property (
     City Varchar(30),
     BranchNumber int,
     StaffID int,
+    imagesURL varchar(5000),
     PRIMARY KEY(PropertyID)
 );
 
@@ -40,6 +41,7 @@ Create Table Lease (
     LeaseEndDate Date,
     LeaseStatus Boolean,
     LeaseRent Numeric(10,2),
+    ClientID int,
     PRIMARY KEY(LeaseID)
 );
 

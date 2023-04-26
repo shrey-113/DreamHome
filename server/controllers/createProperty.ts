@@ -12,9 +12,10 @@ export const createProperty: RequestHandler = async (req, res, next) => {
 			city,
 			branchnumber,
 			staffid,
+            imagesurl,
 		} = req.body;
 		await DB.query(
-			`INSERT INTO Property (type, rooms, rent, OwnerID, PropertyAddress, City, BranchNumber, StaffID) VALUES ('${type}', '${rooms}', ${rent}, ${ownerid}, '${propertyaddress}', '${city}', ${branchnumber}, ${staffid})`,
+			`INSERT INTO Property (type, rooms, rent, OwnerID, PropertyAddress, City, BranchNumber, StaffID, imagesURL) VALUES ('${type}', '${rooms}', ${rent}, ${ownerid}, '${propertyaddress}', '${city}', ${branchnumber}, ${staffid}, ${imagesurl})`,
 		);
 		res.status(200).json({ message: "Property created" });
 	} catch (error) {
@@ -50,9 +51,10 @@ export const createLease: RequestHandler = async (req, res, next) => {
 			leaseenddate,
 			leasestatus,
 			leaserent,
+            ClientID,
 		} = req.body;
 		await DB.query(
-			`INSERT INTO Lease ( PropertyID, LeaseStartDate, LeaseEndDate, LeaseStatus, LeaseRent) VALUES (${propertyid}, '${leasestartdate}', '${leaseenddate}', ${leasestatus}, ${leaserent})`,
+			`INSERT INTO Lease ( PropertyID, LeaseStartDate, LeaseEndDate, LeaseStatus, LeaseRent, ClientID) VALUES (${propertyid}, '${leasestartdate}', '${leaseenddate}', ${leasestatus}, ${leaserent}, ${ClientID})`,
 		);
 		res.status(200).json({ message: "Lease created" });
 	} catch (error) {

@@ -20,9 +20,7 @@ export const createStaff: RequestHandler = async (req, res, next) => {
 		);
 		res.status(200).json({ message: "Staff created" });
 	} catch (err) {
-		console.log(err);
-		return;
-		next();
+		next(new IError("Staff creation failed", 401, "Create staff"));
 	}
 };
 
