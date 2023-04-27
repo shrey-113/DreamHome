@@ -1,13 +1,19 @@
 import express from "express";
+import {
+	getBranchDetails,
+	getBranches,
+	getCities,
+	getStaffDetails,
+} from "../controllers/cityController";
 
 const cityRouter = express.Router();
 
-cityRouter.get("/cities");
+cityRouter.get("/cities", getCities);
 
-cityRouter.get("/cities/:city");
+cityRouter.get("/cities/:city", getBranches);
 
-cityRouter.get("/cities/:city/:branchId");
+cityRouter.get("/cities/:city/:branchId", getBranchDetails);
 
-cityRouter.get("/cities/:city/:branchId/:staffid/");
+cityRouter.get("/cities/:city/:branchId/:staffid/", getStaffDetails);
 
 export default cityRouter;
