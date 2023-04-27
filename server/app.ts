@@ -8,6 +8,7 @@ import createRouter from "./routes/createRoutes";
 import cors from "cors";
 import fetchRouter from "./routes/fetchRoutes";
 import cityRouter from "./routes/cityRoutes";
+import propertyRouter from "./routes/propertyRoutes";
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use("/create", createRouter);
 app.use("/fetch", fetchRouter);
 
 app.use("/search", cityRouter);
+
+app.use("/property", propertyRouter)
 // app.use(isAuth);
 
 app.use((error: IError, req: Request, res: Response, next: NextFunction) => {
@@ -40,3 +43,4 @@ app.listen(3000, async () => {
 	await DB.connect();
 	console.log("Server listening on port 3000");
 });
+

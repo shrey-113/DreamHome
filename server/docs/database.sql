@@ -119,7 +119,7 @@ INSERT INTO Owner ( FirstName, LastName, email, PhoneNumber, Address, Nationalit
 
 INSERT INTO BranchOffice ( BranchAddress, City, ManagerID, TelephoneNumber, ManagerStartDate, ManagerBonus) VALUES
 ( '1 Main Street', 'Glasgow', 1, '0141 123 4567', '2022-01-01', 5000.00),
-( '5 High Street', 'Edinburgh', 2, '0131 123 4567', '2022-01-01', 4500.00),
+( '5 High Street', 'Glasgow', 5, '0131 123 4567', '2022-01-01', 4500.00),
 ( '10 George Square', 'Glasgow', 3, '0141 234 5678', '2022-01-01', 5500.00),
 ( '15 Princes Street', 'Edinburgh', 4, '0131 234 5678', '2022-01-01', 4000.00),
 ( '20 Buchanan Street', 'Glasgow',5 , '0141 345 6789', '2022-01-01', 6000.00),
@@ -130,20 +130,20 @@ INSERT INTO Staff (Firstname, LastName, Email, Sex, Date_of_Birth, Position, Sal
 VALUES 
     ('John', 'Doe', 'johndoe@example.com', 'M', '1990-01-01', 'Manager', 50000, 1, NULL),
     ('Jane', 'Doe', 'janedoe@example.com', 'F', '1995-01-01', 'Assistant', 40000, 1, NULL),
-    ('Mike', 'Smith', 'mikesmith@example.com', 'M', '1985-01-01', 'Supervisior', 60000, 2, NULL),
+    ('Mike', 'Smith', 'mikesmith@example.com', 'M', '1985-01-01', 'Supervisor', 60000, 2, NULL),
     ('Sarah', 'Johnson', 'sarahjohnson@example.com', 'F', '1992-01-01', 'Assistant', 45000, 2, NULL),
-    ('David', 'Lee', 'davidlee@example.com', 'M', '1988-01-01', 'Manager', 55000, 3, NULL),
-    ('Emily', 'Wang', 'emilywang@example.com', 'F', '1998-01-01', 'Assistant', 38000, 3, NULL);
+    ('David', 'Lee', 'davidlee@example.com', 'M', '1988-01-01', 'Manager', 55000, 2, NULL),
+    ('Emily', 'Wang', 'emilywang@example.com', 'F', '1998-01-01', 'Assistant', 38000, 2, NULL);
 
 INSERT INTO Property ( type, rooms, rent, OwnerID, PropertyAddress, City, BranchNumber, StaffID)
 VALUES 
-( 'Apartment', 2, 1500.00, 1, '123 Main St', 'Glasgow', 3, 19),
-( 'House', 3, 2000.00, 2, '456 Park Ave', 'Edinburgh', 2, 19),
-( 'Apartment', 1, 1000.00, 3, '789 5th St', 'Glasgow', 3, 20),
-( 'Apartment', 2, 1200.00, 2, '321 Elm St', 'Edinburgh', 2, 22),
-( 'House', 4, 2500.00, 2, '456 Maple Rd', 'Glasgow', 1, 23),
-( 'House', 5, 3000.00,3 , '789 Oak Ave', 'Edinburgh', 2, 23),
-( 'Apartment', 1, 800.00, 2, '123 Pine St', 'Glasgow', 1, 24);
+( 'Apartment', 2, 1500.00, 1, '123 Main St', 'Glasgow', 2, 1),
+( 'House', 3, 2000.00, 2, '456 Park Ave', 'Edinburgh', 2, 2),
+( 'Apartment', 1, 1000.00, 3, '789 5th St', 'Glasgow', 1, 2),
+( 'Apartment', 2, 1200.00, 2, '321 Elm St', 'Edinburgh', 2, 1),
+( 'House', 4, 2500.00, 2, '456 Maple Rd', 'Glasgow', 1, 3),
+( 'House', 5, 3000.00,3 , '789 Oak Ave', 'Edinburgh', 2, 3),
+( 'Apartment', 1, 800.00, 2, '123 Pine St', 'Glasgow', 1, 4);
 
 INSERT INTO Lease (PropertyID, LeaseStartDate, LeaseEndDate, LeaseStatus, LeaseRent)
 VALUES 
@@ -164,4 +164,5 @@ VALUES
 ( 'Tom Wilson', '369 Maple St, Liverpool', '555-7890'),
 ( 'Samantha Lee', '579 Fifth Ave, New York', '555-2345'),
 ( 'David Brown', '135 King St, Sydney', '555-6789');
+
 
