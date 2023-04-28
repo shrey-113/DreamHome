@@ -7,7 +7,7 @@ export const getProperties: RequestHandler = async (req, res, next) => {
 		const properties = await DB.query(`Select * from Property`);
 		res.status(200).json({ properties });
 	} catch (error) {
-		next(new IError("City fetch failed", 500, "getCities"));
+		next(new IError("Property fetch failed", 500, "getProperties"));
 	}
 };
 
